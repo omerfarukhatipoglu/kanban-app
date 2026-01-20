@@ -10,11 +10,28 @@ class MainController extends GetxController {
 
   final RxBool loading = false.obs;
   final RxList<RecentBoardItem> recentBoards = <RecentBoardItem>[].obs;
+  final RxBool backendAlive = true.obs;
+  final RxBool checkingBackend = false.obs;
 
   @override
   void onInit() {
     super.onInit();
     loadRecentBoards();
+    checkBackend();
+  }
+
+  Future<void> checkBackend() async {
+    if (checkingBackend.value) return;
+
+    checkingBackend.value = true;
+    try {
+      final ok = await _api.health();
+      backendAlive.value = ok;
+    } catch (_) {
+      backendAlive.value = false;
+    } finally {
+      checkingBackend.value = false;
+    }
   }
 
   Future<void> loadRecentBoards() async {

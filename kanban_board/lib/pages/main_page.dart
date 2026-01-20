@@ -52,7 +52,58 @@ class MainPage extends GetView<MainController> {
                 icon: Icons.dashboard_customize_rounded,
               ),
               const SizedBox(height: 16),
+              Obx(() {
+                if (controller.backendAlive.value) {
+                  return const SizedBox.shrink();
+                }
 
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 16),
+                  padding: const EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    color: Colors.red.shade50,
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: Colors.red.shade200),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.cloud_off_rounded, color: Colors.red),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          "Sunucu bağlantısı kurulamadı.",
+                          style: TextStyle(
+                            color: Colors.red.shade800,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Obx(
+                        () => controller.checkingBackend.value
+                            ? const SizedBox(
+                                width: 22,
+                                height: 22,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : TextButton(
+                                onPressed: controller.checkBackend,
+                                child: const Text(
+                                  "Tekrar Dene",
+                                  style: TextStyle(
+                                    color: AppColors.blockedText,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                      ),
+                    ],
+                  ),
+                );
+              }),
               Obx(
                 () => PrimaryActionCard(
                   title: "Yeni Board Oluştur",
