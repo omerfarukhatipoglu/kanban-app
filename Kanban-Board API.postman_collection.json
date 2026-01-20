@@ -1,0 +1,160 @@
+{
+  "info": {
+    "_postman_id": "63ad22cc-fa8c-4ba8-b91a-441a23061669",
+    "name": "Kanban-Board API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "42528475"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Board Oluştur",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"My First Board\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/boards",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "boards"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Board Getir",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/boards/{BOARD_ID}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "boards",
+            "{BOARD_ID}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Card Oluştur",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"list\": \"todo\",\n  \"title\": \"Yeni görev\",\n  \"description\": \"Opsiyonel açıklama\",\n  \"colorHex\": \"#DBEAFE\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/boards/{BOARD_ID}/cards",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "boards",
+            "{BOARD_ID}",
+            "cards"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Card Güncelle",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Güncellenmiş başlık\",\n  \"description\": \"Yeni açıklama\",\n  \"colorHex\": \"#CFFAFE\",\n  \"order\": 1,\n  \"list\": \"inprogress\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/boards/{BOARD_ID}/cards/abcd1234",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "boards",
+            "{BOARD_ID}",
+            "cards",
+            "abcd1234"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Card Sil",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/boards/{BOARD_ID}/cards/abcd1234",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "boards",
+            "{BOARD_ID}",
+            "cards",
+            "abcd1234"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
